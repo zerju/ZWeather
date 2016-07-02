@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="10dp"
+    android:id="@+id/daysoftheweekLayout">
+
+    <com.zerju.weather.Colaborate
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Wednesday"
+        android:id="@+id/dayText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/black"/>
+
+    <com.zerju.weather.Colaborate
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        tools:text="Thunderstorm"
+        android:id="@+id/descText"
+        android:layout_below="@+id/dayText"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/white"/>
+
+    <com.zerju.weather.Colaborate
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text="8°c|0°c"
+        android:id="@+id/tempText"
+        android:layout_alignBottom="@+id/descText"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/white"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_line"
+        android:tileMode="repeat"
+        android:id="@+id/line1"
+        android:layout_below="@+id/tempText"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>

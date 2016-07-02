@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string-array name="dnevi">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string name="title_activity_main2">Weather</string>
+    <string name="title_activity_location">LocationActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="api_key">AIzaSyCMrzC71xEpXXcPx6sZALozldDTJaTg8Gw</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+</resources>

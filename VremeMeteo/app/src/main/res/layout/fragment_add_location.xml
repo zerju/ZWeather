@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:whatever="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zerju.weather.fragments.AddLocationFragment"
+    android:background="@drawable/gradient_background">
+
+
+    <co.geeksters.googleplaceautocomplete.lib.CustomAutoCompleteTextView
+        android:id="@+id/atv_places"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        whatever:key="AIzaSyDDjT9ri_FVK40KVzxmvsYBhKv10BfHu_0"
+        whatever:type="(cities)"
+        whatever:sensor="true"
+        whatever:delay="700"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/cancelAutoBtn"
+        android:layout_marginTop="56dp"
+        android:hint="Type to search"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/addAutoBtn"
+        android:layout_below="@+id/atv_places"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancelAutoBtn"
+        android:layout_alignTop="@+id/addAutoBtn"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"/>
+
+    <com.zerju.weather.Colaborate
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Select a location"
+        android:id="@+id/addlocationTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"/>
+
+
+</RelativeLayout>

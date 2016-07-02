@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.zerju.weather.Colaborate
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text="Rogaska Slatina"
+        android:id="@+id/savedLocationText"
+        android:ellipsize="end"
+        android:lines="1"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/deleteBtn"
+        android:paddingTop="10dp"
+        android:textColor="@color/white"/>
+
+    <com.zerju.weather.Colaborate
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/selectedText"
+        android:layout_marginLeft="20dp"
+        android:visibility="invisible"
+        android:background="@drawable/check"
+        android:layout_alignBottom="@+id/savedLocationText"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="10dp"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/deleteBtn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/minus"
+        android:visibility="gone"
+        android:paddingTop="10dp"/>
+</RelativeLayout>

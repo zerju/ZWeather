@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/firstRow">
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/gray_box_left_first"
+            android:layout_weight="1">
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="16 km/h"
+                android:id="@+id/windText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Wind Speed"
+                android:id="@+id/windSpeed"
+                android:layout_below="@id/windText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/gray_box_center_first"
+            android:layout_weight="1">
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="55%"
+                android:id="@+id/humidityText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Humidity"
+                android:id="@+id/humidityTitle"
+                android:layout_below="@id/humidityText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/gray_box_right_first"
+            android:layout_weight="1">
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="1011 Pa"
+                android:id="@+id/pressureText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Pressure"
+                android:id="@+id/pressureTitle"
+                android:layout_below="@id/pressureText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@+id/firstRow">
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/gray_box_left_second"
+            android:layout_weight="1">
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="10.1°C"
+                android:id="@+id/feelsText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"/>
+
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Feels like"
+                android:id="@+id/feelsLike"
+                android:layout_below="@id/feelsText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/gray_box_center_second"
+            android:layout_weight="1">
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="16.1km"
+                android:id="@+id/visibilityText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Visibility"
+                android:id="@+id/visibilityTitle"
+                android:layout_below="@id/visibilityText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/gray_box_right_second"
+            android:layout_weight="1">
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="1.2mm"
+                android:id="@+id/precipText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+
+            <com.zerju.weather.Colaborate
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Precip"
+                android:id="@+id/precipTitle"
+                android:layout_below="@id/precipText"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
