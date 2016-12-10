@@ -5,9 +5,14 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +27,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.zerju.weather.model.Hourly;
 import com.zerju.weather.model.Vreme;
 import com.zerju.weather.model.Weather;
@@ -77,14 +84,6 @@ public class Main2Activity extends AppCompatActivity {
     @Bind(R.id.copyright)
     TextView copyright;
 
-   /* TextView widgetCity;
-
-    ImageView widgetImage;
-
-    TextView widgetTemp;
-
-    Button refresh;*/
-
 
 
 
@@ -111,9 +110,6 @@ public class Main2Activity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
                 Intent i = new Intent(getApplicationContext(),Main2Activity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(i);
@@ -152,96 +148,55 @@ public class Main2Activity extends AppCompatActivity {
                     Log.e("Failure", "On Failure Line 140");
                 }
 
-                //vreme.getData().getWeather().get(2).getDate()
                 @Override
                 public void onResponse(Call<Vreme> call, Response<Vreme> response) {
                     Vreme vreme = response.body();
                     if (vreme != null) {
                         cityText.setText(cityname);
-                      //  widgetCity.setText(cityname);
                         temperatureText.setText(vreme.getData().getCurrentCondition().get(0).getTempC() + "°");
-                     //   widgetTemp.setText(vreme.getData().getCurrentCondition().get(0).getTempC()+"°C");
                         statusText.setText(vreme.getData().getCurrentCondition().get(0).getWeatherDesc().get(0).getValue());
                         int i = 0;
 
                         for (Hourly hourly : vreme.getData().getWeather().get(0).getHourly()) {
-                            View v = LayoutInflater.from(
+                           final View v = LayoutInflater.from(
                                     getApplicationContext()).inflate(
                                     R.layout.daysforecast, (ViewGroup) findViewById(android.R.id.content).getRootView(), false);
 
                             TextView dateText = (TextView) v.findViewById(R.id.dateText);
                             ImageView forecastImage = (ImageView) v.findViewById(R.id.forecastImage);
                             TextView maxTemp = (TextView) v.findViewById(R.id.maxTempText);
-                            Calendar calendar = Calendar.getInstance();
-//                    String[]date = vreme.getData().getWeather().get(i).getDate().split("-");
-                            Date date1 = new Date();
 
-                            //                   calendar.set(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
                             SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE"); // the day of the week spelled out completely
 
-                            //int j =calendar.get(Calendar.DAY_OF_WEEK);
-//                    Log.e("DATE",vreme.getData().getWeather().get(i).getDate()+" day of the week");
-                   /* try {
-                        Date predefined = new SimpleDateFormat("yyyy-MM-dd").parse(vreme.getData().getWeather().get(i).getDate());
-                        //dateText.setText(simpleDateformat.format(predefined));
-                    } catch (Exception e) {
-                        Log.e("Exception date", e.getMessage());
-                    }*/
-                            String ura = hourly.getTime().substring(0, hourly.getTime().length() - 2) + ":" + hourly.getTime().substring(hourly.getTime().length() - 2);
-                            dateText.setText(ura);
-                            // String status = vreme.getData().getWeather().get(i).getHourly().get(6).getWeatherDesc().get(0).getValue().toString().toUpperCase();
-                            String status = hourly.getWeatherDesc().get(0).getValue().toString().toUpperCase();
-                            Log.e("VREME", status);
-                            if (status.contains("SUNNY") || status.contains("CLEAR")) {
-                                forecastImage.setImageResource(R.mipmap.sunny);
-                            //    widgetImage.setImageResource(R.mipmap.sunny);
-                            } else if (status.equals("PARTLY CLOUDY")) {
-                                forecastImage.setImageResource(R.mipmap.party_cloudy);
-                            //    widgetImage.setImageResource(R.mipmap.party_cloudy);
-                            } else if (status.contains("CLOUDY")) {
-                                forecastImage.setImageResource(R.mipmap.cloudy);
-                              //  widgetImage.setImageResource(R.mipmap.cloudy);
-
-                            } else if (status.contains("FOG") || status.contains("MIST")) {
-                                forecastImage.setImageResource(R.mipmap.fog);
-                             //   widgetImage.setImageResource(R.mipmap.fog);
-
-                            } else if (status.contains("DRIZZLE")) {
-                                forecastImage.setImageResource(R.mipmap.rainy);
-                              //  widgetImage.setImageResource(R.mipmap.rainy);
-
-                            } else if (status.contains("SNOW")) {
-                                forecastImage.setImageResource(R.mipmap.snow);
-                              //  widgetImage.setImageResource(R.mipmap.snow);
-
-                            } else if (status.contains("THUNDER")) {
-                                forecastImage.setImageResource(R.mipmap.thunder);
-                               // widgetImage.setImageResource(R.mipmap.thunder);
-
-                            } else if (status.contains("SLEET")) {
-                                forecastImage.setImageResource(R.mipmap.rain_snow);
-                             //   widgetImage.setImageResource(R.mipmap.rain_snow);
-
-                            } else if (status.contains("RAIN")) {
-                                forecastImage.setImageResource(R.mipmap.more_rain);
-                              //  widgetImage.setImageResource(R.mipmap.more_rain);
-
-                            } else if (status.contains("BLIZZARD")) {
-                                forecastImage.setImageResource(R.mipmap.snow);
-                              //  widgetImage.setImageResource(R.mipmap.snow);
-
-                            } else if (status.contains("OVERCAST")) {
-                                forecastImage.setImageResource(R.mipmap.overcast);
-                              //  widgetImage.setImageResource(R.mipmap.overcast);
-
-                            } else if (status.contains("ICE")) {
-                                forecastImage.setImageResource(R.mipmap.ice);
-                             //   widgetImage.setImageResource(R.mipmap.ice);
-
+                            String ura = "";//time is written in a format like 300 for 3:00 so I need to reformat it so it looks better,
+                            if(hourly.getTime().equals("0")){// my format doesnt work when the length of the string is less than 2 which only happens at 0
+                                ura = "0:00";
+                            }else {
+                                ura = hourly.getTime().substring(0, hourly.getTime().length() - 2) + ":" + hourly.getTime().substring(hourly.getTime().length() - 2);
                             }
 
-                            //maxTemp.setText(vreme.getData().getWeather().get(i).getMintempC() + "°C/"+vreme.getData().getWeather().get(i).getMaxtempC() + "°C");
-                            //getResources().getDrawable(R.mipmap.cloudy)
+                            dateText.setText(ura);
+                            // String status = vreme.getData().getWeather().get(i).getHourly().get(6).getWeatherDesc().get(0).getValue().toString().toUpperCase();
+
+
+                            Target target = new Target() {
+                                @Override
+                                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                    v.setAlpha((float)0.4);
+                                  //  v.setBackgroundColor(bitmap.getPixel(0,0));
+                                }
+
+                                @Override
+                                public void onBitmapFailed(Drawable errorDrawable) {
+                                }
+
+                                @Override
+                                public void onPrepareLoad(Drawable placeHolderDrawable) {
+                                }
+                            };
+
+                            Picasso.with(getApplicationContext()).load(hourly.getWeatherIconUrl().get(0).getValue().toString()).into(target);
+                            Picasso.with(getApplicationContext()).load(hourly.getWeatherIconUrl().get(0).getValue().toString()).into(forecastImage);
 
                             maxTemp.setText(hourly.getTempC() + "°C");
                             linearHsw.addView(v);
@@ -278,7 +233,6 @@ public class Main2Activity extends AppCompatActivity {
                             j++;
                             daysLayout.addView(v2);
                         }
-                        // vreme.getData().getCurrentCondition().get(0).
 
                         daysLayout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
                         final TextView viewmoredays = (TextView) relativeHide.findViewById(R.id.viewMoreDays);
@@ -326,18 +280,14 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.newLocationBtn/*, R.id.widgetRefresh*/})
+    @OnClick({R.id.newLocationBtn})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.newLocationBtn:
                 startActivity(new Intent(getApplicationContext(), LocationActivity.class));
                 this.finish();
                 break;
-            /*case R.id.widgetRefresh:
-                refresh.startAnimation(
-                        AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_btn));
-                startActivity(new Intent(getApplicationContext(), Main2Activity.class));
-                break;*/
+
         }
     }
     private void animationAlpha(final View v, int minHeight, final int maxHeight, int startAlpha, int endAlpha, final boolean shrink,final int count) {
